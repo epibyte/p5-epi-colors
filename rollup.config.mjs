@@ -9,7 +9,7 @@ export default {
   output: {
     file: 'dist/p5-epi-colors.js',
     format: 'iife',            // Immediately Invoked Function Expression
-    name: 'EpiColors',       // Global namespace when included via script tag
+    name: 'EpiColorsPckg',       // Global namespace when included via script tag
   },
   plugins: [resolve()],
 };

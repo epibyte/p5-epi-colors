@@ -1,4 +1,4 @@
-var EpiColors = (function (exports) {
+var EpiColorsPckg = (function (exports) {
 	'use strict';
 
 	/*
