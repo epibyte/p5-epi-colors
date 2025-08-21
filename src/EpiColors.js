@@ -40,8 +40,8 @@ export default class EpiColors {
     if (randomize) this.randomizePalette();
     
     this.FG = random(this.palette);
-	  this.BG = this.adjColorBrightness(this.adjColorSaturation(this.FG, 1.5), 0.5);
-	  this.FG = this.adjColorBrightness(this.adjColorSaturation(this.FG, 0.75), 0.75);
+	  this.BG = this.getAdjustedBrightness(this.getAdjustedSaturation(this.FG, 1.5), 0.5);
+	  this.FG = this.getAdjustedBrightness(this.getAdjustedSaturation(this.FG, 0.75), 0.75);
 	}
   
   /**

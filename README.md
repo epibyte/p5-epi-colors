@@ -48,12 +48,17 @@ Helper for color operations and palette management for js, p5js (uses color())
 
 ## Usage Example
 
+```html
+https://cdn.jsdelivr.net/gh/epibyte/p5-epi-colors@v0.0.2/dist/p5-epi-colors.js
+```
+
 ```js
 // In your p5.js sketch:
 let epiColors;
 
 function setup() {
 	createCanvas(400, 400);
+  
 	epiColors = new EpiColors();
 	// epiColors.getRandomPalette(); // optional, part of the constructor
 	background(epiColors.BG);
