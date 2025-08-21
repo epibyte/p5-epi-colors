@@ -113,12 +113,12 @@ export default class EpiColors {
 
 
 	/**
-	 * Returns the average color of a palette, optionally limiting the max channel value.
-	 * @param {Array<string|object>} pal - Palette array
+	 * Returns the average color of the current palette, optionally limiting the max channel value.
 	 * @param {number} [lmt=255] - Maximum channel value
 	 * @returns {object} p5 color object
 	 */
-	getAverageClr(pal, lmt = 255) {
+	getAverageClr(lmt = 255) {
+		const pal = this.palette;
 		let s_r = 0, s_g = 0, s_b = 0, s_max;
 		for (let clr of pal) {
 			clr = this.getColor(clr);
