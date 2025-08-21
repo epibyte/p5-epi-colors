@@ -41,7 +41,7 @@ Helper for color operations and palette management for js, p5js (uses color())
 	- Adjusts the brightness of a color.
 	- `f`: Brightness factor (0-1: darker, >1: brighter)
 
-- `getAverageClr(pal, lmt = 255)`
+- `getAverageClr(lmt = 255)`
 	- Returns the average color of current palette, optionally limiting the max channel value.
 	- `lmt`: Maximum channel value
 
