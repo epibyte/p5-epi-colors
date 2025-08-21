@@ -25,7 +25,7 @@ Helper for color operations and palette management for js, p5js (uses color())
 - `randomizePalette()`
 	- Shuffles the current palette in place.
 
-- `getColor(clr)`
+- `getColor(clr, alpha = null)`
 	- Converts a color input (hex string, int, or p5 color object) to a p5 color object.
 
 - `getLerpedColorFromPalette(f, arr = null)`
@@ -42,8 +42,7 @@ Helper for color operations and palette management for js, p5js (uses color())
 	- `f`: Brightness factor (0-1: darker, >1: brighter)
 
 - `getAverageClr(pal, lmt = 255)`
-	- Returns the average color of a palette, optionally limiting the max channel value.
-	- `pal`: Palette array
+	- Returns the average color of current palette, optionally limiting the max channel value.
 	- `lmt`: Maximum channel value
 
 ## Usage Example
@@ -53,7 +52,7 @@ https://openprocessing.org/sketch/2705113
 
 In OpenProcessing, go to Sketch > Libraries > Add .js File and paste URL:
 ```html
-https://cdn.jsdelivr.net/gh/epibyte/p5-epi-colors@v0.0.4/dist/p5-epi-colors.js
+https://cdn.jsdelivr.net/gh/epibyte/p5-epi-colors@v0.0.6/dist/p5-epi-colors.js
 ```
 or include via <script src="">
 

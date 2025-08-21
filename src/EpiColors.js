@@ -35,13 +35,14 @@ export default class EpiColors {
 	 * sets random palette as current palette, defines FG and BG colors
    * 	@param {boolean} randomize - Wheter to randomize the colors in the palette, dafault is no
 	 */
-  getRandomPalette(randomize = false) {
-		this.palette = [...random(this.palettes)];
-    if (randomize) this.randomizePalette();
-  
-    this.FG = random(this.palette);
-	  this.BG = this.getAdjustedBrightness(this.getAdjustedSaturation(this.FG, 1.5), 0.5);
-	  this.FG = this.getAdjustedBrightness(this.getAdjustedSaturation(this.FG, 0.75), 0.75);
+	getRandomPalette(randomize = false) {
+		// Select a random palette and convert all colors to p5 color objects
+		this.palette = [...random(this.palettes)].map(clr => this.getColor(clr));
+		if (randomize) this.randomizePalette();
+
+		this.FG = random(this.palette);
+		this.BG = this.getAdjustedBrightness(this.getAdjustedSaturation(this.FG, 1.5), 0.5);
+		this.FG = this.getAdjustedBrightness(this.getAdjustedSaturation(this.FG, 0.75), 1.25);
 	}
   
   /**
@@ -53,12 +54,14 @@ export default class EpiColors {
 
 
 	/**
-	 * Converts a color input to a p5 color object if needed.
+	 * Converts a color input to a p5 color object if needed; adds alpha optionally
 	 * @param {string|number|object} clr - Color value (hex string, int, or p5 color object)
+	 * @param {number} alpha - Alpha value (0-255)
 	 * @returns {object} p5 color object
 	 */
-	getColor(clr) {
+	getColor(clr, alpha = null) {
 		if (typeof clr === 'string' || clr instanceof String || Number.isInteger(clr)) clr = color(clr);
+		if (alpha !== null) clr.setAlpha(alpha);
 		return clr;
 	}
 
