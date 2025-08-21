@@ -41,7 +41,7 @@ var EpiColorsPckg = (function (exports) {
 	  getRandomPalette(randomize = false) {
 			this.palette = [...random(this.palettes)];
 	    if (randomize) this.randomizePalette();
-	    
+	  
 	    this.FG = random(this.palette);
 		  this.BG = this.getAdjustedBrightness(this.getAdjustedSaturation(this.FG, 1.5), 0.5);
 		  this.FG = this.getAdjustedBrightness(this.getAdjustedSaturation(this.FG, 0.75), 0.75);
