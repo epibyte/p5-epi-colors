@@ -48,9 +48,11 @@ Helper for color operations and palette management for js, p5js (uses color())
 
 ## Usage Example
 
+In OpenProcessing, go to Sketch > Libraries > Add .js File and paste URL:
 ```html
-https://cdn.jsdelivr.net/gh/epibyte/p5-epi-colors@v0.0.2/dist/p5-epi-colors.js
+https://cdn.jsdelivr.net/gh/epibyte/p5-epi-colors@v0.0.4/dist/p5-epi-colors.js
 ```
+or include via <script src="">
 
 ```js
 // In your p5.js sketch:
@@ -59,6 +61,7 @@ let epiColors;
 function setup() {
 	createCanvas(400, 400);
   
+  const { EpiColors } = EpiColorsPckg;
 	epiColors = new EpiColors();
 	// epiColors.getRandomPalette(); // optional, part of the constructor
 	background(epiColors.BG);
