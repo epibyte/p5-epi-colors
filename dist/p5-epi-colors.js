@@ -55,7 +55,6 @@ var EpiColorsPckg = (function (exports) {
 			this.palette = shuffle(this.palette);
 		}
 
-
 		/**
 		 * Converts a color input to a p5 color object if needed; adds alpha optionally
 		 * @param {string|number|object} clr - Color value (hex string, int, or p5 color object)
@@ -66,6 +65,38 @@ var EpiColorsPckg = (function (exports) {
 			if (typeof clr === 'string' || clr instanceof String || Number.isInteger(clr)) clr = color(clr);
 			if (alpha !== null) clr.setAlpha(alpha);
 			return clr;
+		}
+
+		/**
+		 * Returns a random color from the current palette.
+		 * @returns {object} p5 color object
+		 */
+		getRandomClr() {
+			return random(this.palette);
+		}
+
+		/**
+		 * Converts a p5 color object to a hex string (with alpha if not fully opaque).
+		 * @param {object} clr - p5 color object
+		 * @returns {string} Hex color string (e.g. #RRGGBB or #RRGGBBAA)
+		 */
+		convertClr2HexStr(clr) {
+			clr = this.getColor(clr);
+
+			let r = red(clr);
+			let g = green(clr);
+			let b = blue(clr);
+			let a = alpha(clr);
+
+			// Always include RGB
+			let hexString = "#" + hex(r, 2) + hex(g, 2) + hex(b, 2);
+
+			// Append alpha only if not fully opaque
+			if (a < 255) {
+				hexString += hex(a, 2);
+			}
+
+			return hexString.toUpperCase();
 		}
 
 

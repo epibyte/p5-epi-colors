@@ -1,6 +1,25 @@
 
+
 # p5-epi-colors
 Helper for color operations and palette management for js, p5js (uses color())
+
+## Build & CDN Usage
+
+- Build with:  
+	```sh
+	npx rollup -c
+	```
+- Tag and push for CDN:
+	```sh
+	git tag v0.0.1
+	git push origin v0.0.1
+	```
+- Use from CDN (replace version as needed):
+	```html
+	<script src="https://cdn.jsdelivr.net/gh/epibyte/p5-epi-colors@v0.0.7/dist/p5-epi-colors.js"></script>
+	```
+
+## Import/Usage
 
 ## Features
 
@@ -41,29 +60,35 @@ Helper for color operations and palette management for js, p5js (uses color())
 	- Adjusts the brightness of a color.
 	- `f`: Brightness factor (0-1: darker, >1: brighter)
 
+
 - `getAverageClr(lmt = 255)`
 	- Returns the average color of current palette, optionally limiting the max channel value.
 	- `lmt`: Maximum channel value
 
+- `getRandomClr()`
+	- Returns a random color from the current palette.
+
+- `convertClr2HexStr(clr)`
+	- Converts a p5 color object to a hex string (with alpha if not fully opaque).
+	- `clr`: p5 color object or value accepted by getColor
+
 ## Usage Example
 
-Example URL:
+
+Example URL:  
 https://openprocessing.org/sketch/2705113
 
-In OpenProcessing, go to Sketch > Libraries > Add .js File and paste URL:
-```html
-https://cdn.jsdelivr.net/gh/epibyte/p5-epi-colors@v0.0.6/dist/p5-epi-colors.js
-```
-or include via <script src="">
+In OpenProcessing, go to Sketch > Libraries > Add .js File and paste the CDN URL above, or include via `<script src="...">` in your HTML.
+
 
 ```js
-// In your p5.js sketch:
+// In your p5.js sketch (CDN build):
 let epiColors;
 
 function setup() {
 	createCanvas(400, 400);
-  
-  const { EpiColors } = EpiColorsPckg;
+	// EpiColors is available as EpiColorsPckg.EpiColors
+	const { EpiColors } = EpiColorsPckg;
 	epiColors = new EpiColors();
 	// epiColors.getRandomPalette(); // optional, part of the constructor
 	background(epiColors.BG);
@@ -78,6 +103,17 @@ function setup() {
 	ellipse(width / 2, height - 60, 60, 60);
 }
 ```
+
+### Using with npm/rollup (local build)
+
+If you are using this as a module in your own project:
+
+```js
+import EpiColors from './src/EpiColors.js';
+const epiColors = new EpiColors();
+// ...use as above
+```
+
 
 ## Notes
 - Requires p5.js and its color utilities (color, lerpColor, etc.)
