@@ -1,4 +1,4 @@
-/*
+/**
  * EpiColors Class
  * A class for managing color palettes and color manipulation.	
  * 		palettes: Array of color palettes (array of arrays of hex strings)
@@ -37,18 +37,18 @@ export default class EpiColors {
 	 */
 	getRandomPalette(randomize = false) {
 		// Select a random palette and convert all colors to p5 color objects
-		this.palette = [...random(this.palettes)].map(clr => this.getColor(clr));
+		this.palette = [...random(this.palettes)].map(clr => EpiColors.getColor(clr));
 		if (randomize) this.randomizePalette();
 
 		this.FG = random(this.palette);
-		this.BG = this.getAdjustedBrightness(this.getAdjustedSaturation(this.FG, 1.5), 0.5);
-		this.FG = this.getAdjustedBrightness(this.getAdjustedSaturation(this.FG, 0.75), 1.25);
+		this.BG = EpiColors.getAdjustedBrightness(EpiColors.getAdjustedSaturation(this.FG, 1.5), 0.5);
+		this.FG = EpiColors.getAdjustedBrightness(EpiColors.getAdjustedSaturation(this.FG, 0.75), 1.25);
 	}
   
   /**
 	 * Randomizes the order of colors in the current palette
 	 */
-  randomizePalette() {
+	randomizePalette() {
 		this.palette = shuffle(this.palette);
 	}
 
@@ -58,7 +58,7 @@ export default class EpiColors {
 	 * @param {number} alpha - Alpha value (0-255)
 	 * @returns {object} p5 color object
 	 */
-	getColor(clr, alpha = null) {
+	static getColor(clr, alpha = null) {
 		if (typeof clr === 'string' || clr instanceof String || Number.isInteger(clr)) clr = color(clr);
 		if (alpha !== null) clr.setAlpha(alpha);
 		return clr;
@@ -77,8 +77,8 @@ export default class EpiColors {
 	 * @param {object} clr - p5 color object
 	 * @returns {string} Hex color string (e.g. #RRGGBB or #RRGGBBAA)
 	 */
-	convertClr2HexStr(clr) {
-		clr = this.getColor(clr);
+	static convertClr2HexStr(clr) {
+		clr = EpiColors.getColor(clr);
 
 		let r = red(clr);
 		let g = green(clr);
@@ -108,8 +108,8 @@ export default class EpiColors {
 		f *= arr.length;
 		const c1i = ~~(f);
 		const c2i = (c1i + 1) % arr.length;
-		const c1 = this.getColor(arr[c1i]);
-		const c2 = this.getColor(arr[c2i]);
+		const c1 = EpiColors.getColor(arr[c1i]);
+		const c2 = EpiColors.getColor(arr[c2i]);
 		return lerpColor(c1, c2, fract(f));
 	}
 
@@ -120,8 +120,8 @@ export default class EpiColors {
 	 * @param {number} [f=1] - Saturation factor (0-1: less saturated, >1: more saturated)
 	 * @returns {object} p5 color object
 	 */
-	getAdjustedSaturation(clr, f = 1) {
-		clr = this.getColor(clr);
+	static getAdjustedSaturation(clr, f = 1) {
+		clr = EpiColors.getColor(clr);
 		const br = brightness(clr);
 		return color(
 			constrain(lerp(br, red(clr), f), 0, 255),
@@ -136,8 +136,8 @@ export default class EpiColors {
 	 * @param {number} [f=1] - Brightness factor (0-1: darker, >1: brighter)
 	 * @returns {object} p5 color object
 	 */
-	getAdjustedBrightness(clr, f = 1) {
-		clr = this.getColor(clr);
+	static getAdjustedBrightness(clr, f = 1) {
+		clr = EpiColors.getColor(clr);
 		return color(
 			constrain(red(clr) * f, 0, 255),
 			constrain(green(clr) * f, 0, 255),
@@ -155,7 +155,7 @@ export default class EpiColors {
 		const pal = this.palette;
 		let s_r = 0, s_g = 0, s_b = 0, s_max;
 		for (let clr of pal) {
-			clr = this.getColor(clr);
+			clr = EpiColors.getColor(clr);
 			s_r += red(clr);
 			s_g += green(clr);
 			s_b += blue(clr);

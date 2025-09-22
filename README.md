@@ -16,7 +16,7 @@ Helper for color operations and palette management for js, p5js (uses color())
 	```
 - Use from CDN (replace version as needed):
 	```html
-	<script src="https://cdn.jsdelivr.net/gh/epibyte/p5-epi-colors@v0.0.7/dist/p5-epi-colors.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/epibyte/p5-epi-colors@v0.0.9/dist/p5-epi-colors.js"></script>
 	```
 
 ## Import/Usage
@@ -44,7 +44,8 @@ Helper for color operations and palette management for js, p5js (uses color())
 - `randomizePalette()`
 	- Shuffles the current palette in place.
 
-- `getColor(clr, alpha = null)`
+
+- `EpiColors.getColor(clr, alpha = null)` (static)
 	- Converts a color input (hex string, int, or p5 color object) to a p5 color object.
 
 - `getLerpedColorFromPalette(f, arr = null)`
@@ -52,11 +53,12 @@ Helper for color operations and palette management for js, p5js (uses color())
 	- `f`: Interpolation factor (0-1)
 	- `arr`: Palette array to use (defaults to current palette)
 
-- `getAdjustedSaturation(clr, f = 1)`
+
+- `EpiColors.getAdjustedSaturation(clr, f = 1)` (static)
 	- Adjusts the saturation of a color.
 	- `f`: Saturation factor (0-1: less saturated, >1: more saturated)
 
-- `getAdjustedBrightness(clr, f = 1)`
+- `EpiColors.getAdjustedBrightness(clr, f = 1)` (static)
 	- Adjusts the brightness of a color.
 	- `f`: Brightness factor (0-1: darker, >1: brighter)
 
@@ -68,7 +70,7 @@ Helper for color operations and palette management for js, p5js (uses color())
 - `getRandomClr()`
 	- Returns a random color from the current palette.
 
-- `convertClr2HexStr(clr)`
+- `EpiColors.convertClr2HexStr(clr)` (static)
 	- Converts a p5 color object to a hex string (with alpha if not fully opaque).
 	- `clr`: p5 color object or value accepted by getColor
 
